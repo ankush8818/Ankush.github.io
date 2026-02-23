@@ -3,193 +3,280 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Dr. Ankush Kapoor | Teaching Professional</title>
+    <title>Dr. Ankush Kapoor | Academic Portfolio</title>
     <style>
-        /* Professional Color Palette */
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2b6cb0;
+            --accent-color: #d69e2e;
+            --bg-color: #f7fafc;
+            --text-color: #2d3748;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
             margin: 0;
-            color: #333;
-            background-color: #f4f7f6;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
         }
+
+        /* Decorative Header */
         header {
-            background: #2c3e50; /* Deep Navy */
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: white;
-            padding: 2rem 1rem;
+            padding: 4rem 2rem;
             text-align: center;
+            border-bottom: 5px solid var(--accent-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
+
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            letter-spacing: 1px;
+        }
+
+        header h2 {
+            margin: 10px 0 0 0;
+            font-weight: 300;
+            font-size: 1.5rem;
+            color: #e2e8f0;
+        }
+
+        .affiliation {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Main Container */
         .container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 2rem auto;
             padding: 0 20px;
         }
-        section {
-            background: white;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+        /* Section Styling */
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            font-size: 2rem;
         }
-        h1 { margin: 0; font-size: 2.5rem; }
-        h2 { color: #2980b9; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        .tagline { font-style: italic; opacity: 0.9; }
-        .contact-btn {
+
+        /* Course Cards */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .course-header {
+            background-color: #edf2f7;
+            padding: 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .course-header h3 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+        }
+
+        .course-code {
             display: inline-block;
-            background: #2980b9;
+            background: var(--accent-color);
             color: white;
-            padding: 10px 20px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .course-content {
+            padding: 20px;
+        }
+
+        /* Data Tables for Assignments & Awards */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .data-table th, .data-table td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .data-table th {
+            background-color: #f8fafc;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .download-btn {
+            display: inline-block;
             text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
+            color: var(--secondary-color);
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .download-btn:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--primary-color);
+            color: white;
+            margin-top: 40px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+            header h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Dr. Ankush Kapoor, Associate Professor</h1>
-    <p class="tagline">Dedicated Educator | [Name: Dr. Ankush Kapoor
-Designation: Associate Professor, ECE, ABVGIET Pragatinagar, Shimla (H.P.), India
-Date of Birth: 27 Aug 1988
-Educational Qualifications:
+    <header>
+        <h1>Dr. Ankush Kapoor</h1>
+        <h2>Associate Professor | Officer In-Charge (Academics)</h2>
+        <div class="affiliation">
+            Department of Electronics and Communication Engineering (ECE)<br>
+            Atal Bihari Vajpayee Government Institute of Engineering & Technology (ABVGIET)<br>
+            Pragatinagar, Shimla
+        </div>
+    </header>
 
-M.Tech (Gold Medalist)
+    <div class="container">
+        
+        <h2 class="section-title">Current Courses & Academic Resources</h2>
 
-Ph.D. in Electronics & Communication Engineering
+        <div class="course-grid">
+            <div class="course-card">
+                <div class="course-header">
+                    <span class="course-code">ECEPE-615(vi)</span>
+                    <h3>Electronic Measurement and Measuring Instruments</h3>
+                </div>
+                <div class="course-content">
+                    <p>Welcome to the portal for Electronic Measurement. Below you will find all necessary course materials, ongoing assignments, and official award sheets for the current semester.</p>
+                    
+                    <h4>Assignments</h4>
+                    <table class="data-table">
+                        <tr>
+                            <th>Title</th>
+                            <th>Deadline</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                            <td>Assignment 1: Transducers</td>
+                            <td>March 10, 2026</td>
+                            <td><a href="#" class="download-btn">Download PDF</a></td>
+                        </tr>
+                        <tr>
+                            <td>Assignment 2: Bridge Circuits</td>
+                            <td>April 05, 2026</td>
+                            <td><a href="#" class="download-btn">Download PDF</a></td>
+                        </tr>
+                    </table>
 
-Experience:
+                    <h4 style="margin-top: 25px;">Evaluation & Award Sheets</h4>
+                    <table class="data-table">
+                        <tr>
+                            <th>Document</th>
+                            <th>Date Posted</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                            <td>Mid-Semester Award Sheet</td>
+                            <td>Pending</td>
+                            <td><a href="#" class="download-btn">View/Download</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
 
-Teaching: 12+ years
+            <div class="course-card">
+                <div class="course-header">
+                    <span class="course-code">ECEPE-616(i)</span>
+                    <h3>Fiber Optic Communications</h3>
+                </div>
+                <div class="course-content">
+                    <p>Welcome to the portal for Fiber Optic Communications. Access your lecture resources, laboratory assignments, and academic evaluation sheets below.</p>
+                    
+                    <h4>Assignments</h4>
+                    <table class="data-table">
+                        <tr>
+                            <th>Title</th>
+                            <th>Deadline</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                            <td>Assignment 1: Optical Waveguides</td>
+                            <td>March 15, 2026</td>
+                            <td><a href="#" class="download-btn">Download PDF</a></td>
+                        </tr>
+                        <tr>
+                            <td>Assignment 2: Signal Degradation</td>
+                            <td>April 12, 2026</td>
+                            <td><a href="#" class="download-btn">Download PDF</a></td>
+                        </tr>
+                    </table>
 
-Research: Active research contributor; 
-📚 Academic Roles & Responsibilities
+                    <h4 style="margin-top: 25px;">Evaluation & Award Sheets</h4>
+                    <table class="data-table">
+                        <tr>
+                            <th>Document</th>
+                            <th>Date Posted</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                            <td>Mid-Semester Award Sheet</td>
+                            <td>Pending</td>
+                            <td><a href="#" class="download-btn">View/Download</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
 
-At ABVGIET, Dr. Kapoor holds multiple key roles beyond teaching:
+    </div>
 
-Officer-in-Charge (OIC) of ECE Department
-
-OIC Academics
-
-Coordinator for NBA/NAAC processes
-
-Involvement in departmental administration and academic coordination
-
-🧑‍🏫 Courses Taught
-
-Dr. Kapoor has taught a broad range of subjects in ECE across diploma, undergraduate and postgraduate levels:
-
-Antenna and Wave Propagation
-
-Electromagnetic Field Theory
-
-Analog & Digital Communication
-
-Optical Communication
-
-Microwave and Radar Engineering
-
-Satellite Communication
-
-5G Communication
-
-🔬 Research Profile
-📄 ResearchGate Contributions
-
-Dr. Kapoor’s ResearchGate profile shows extensive research involvement with 59 publications and a diverse research portfolio, indicating active engagement in scholarly work:
-
-Research Interests / Skills  include:
-
-Electrical & Electronics Engineering
-
-Digital Signal Processing
-
-MATLAB simulation
-
-Metamaterials
-
-Antenna design & measurements
-
-LabVIEW programming
-
-Wireless and Communication systems
-
-📑 Sample Recent Research Topics
-
-His recent publications and contributions (via ResearchGate) include work on:
-
-Frequency Selective Surfaces (FSS) for 5G bands
-
-Wearable antennas and compact MIMO antennas
-
-Dual-band FSS filters for LTE
-
-Design and analysis of antennas for wireless systems
-
-Review articles on antenna design and wearable systems
-
-Some papers have been accepted or published in peer-reviewed journals and conferences (e.g., Telecom, Heliyon, etc.), and he has acted as a reviewer for journals, evidencing scholarly engagement.
-
-📈 Research Output Summary
-
-Total publications: 59 (journals, chapters, and conference papers)
-
-Citation activity: ResearchGate shows ~555 reads and several citations (indicative of peer interest)
-
-Reviewer roles: Recognized reviewer for academic journals
-
-(Note: Google Scholar and ResearchGate are the primary publicly accessible sources for his research output.)
-
-🎓 Research Guidance
-
-From his official institute profile:
-
-Ph.D. students guided: 1 completed  Dr. Tej Raj (https://scholar.google.com/citations?user=vfJl8VYAAAAJ&hl=en) 
-
-Currently supervising 1 ongoing Ph.D. scholar 
-
-Publications record:
-
-International Journals: ~20
-
-International Conferences: ~18
-
-National Conference publications: ~2
-
-Total: ~40 published works listed on the institute profile] Specialist | Lifelong Learner</p>
-</header>
-
-<div class="container">
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Welcome! I am a passionate educator with over 13 years of experience in Electronics and Communication Engineering taking leap from basic active & passive devices to GenAI tools. My teaching philosophy centers on fostering deep conceptual understanding, critical thinking, and practical problem-solving skills among students. I believe that engineering education should bridge theory with real-world applications. Therefore, I emphasize strong fundamentals in subjects such as communication systems, electromagnetic theory, and antenna design while integrating simulations, laboratory experiments, and emerging technologies like 5G and advanced wireless systems.
-
-I strive to create an interactive and inclusive classroom environment where students feel encouraged to ask questions, explore ideas, and engage in research-oriented learning. My goal is not only to prepare students for examinations but to equip them with lifelong learning skills and professional competence.</p>
-    </section>
-
-    <section id="experience">
-        <h2>Professional Experience</h2>
-        <ul>
-            <li><strong>OIC Academics and NBA/NAAC Coordinator</strong> - ECE Department ABVGIET Pragatinagar Shimla (2024 - Present)</li>
-            <li><strong>Department Head</strong> - ECE Department ABVGIET Pragatinagar Shimla (2024 - Present), ECE Department JNGEC Sundernagar (2023 - 2024)</li>
-        </ul>
-    </section>
-
-    <section id="resources">
-        <h2>Student Resources</h2>
-        <p>I believe in making learning accessible. Below are links to current course materials:</p>
-        <ul>
-            <li><a href="#">Syllabus 2026 of HPTU</a></li>
-            <li><a href="#">Reading List</a></li>
-        </ul>
-    </section>
-
-    <section id="contact">
-        <h2>Get In Touch</h2>
-        <p>Interested in collaborating or have questions about my curriculum?</p>
-        <a href="mailto:ankush8818@yahoo.com" class="contact-btn">Email Me</a>
-    </section>
-</div>
+    <footer>
+        <p>&copy; 2026 Dr. Ankush Kapoor. All rights reserved.</p>
+        <p style="font-size: 0.9rem; color: #cbd5e1;">ABVGIET, Pragatinagar, Shimla (H.P.)</p>
+    </footer>
 
 </body>
 </html>
