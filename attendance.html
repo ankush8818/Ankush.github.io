@@ -13,11 +13,10 @@
         }
 
         body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg-color); margin: 0; padding: 0; }
-        
-        nav { background: var(--primary-color); padding: 1rem; text-align: center; }
-        nav a { color: white; text-decoration: none; font-weight: bold; margin: 0 15px; padding: 8px 15px; border-radius: 5px; }
+        nav { background: var(--primary-color); padding: 1rem; text-align: center; position: sticky; top: 0; z-index: 1000; }
+        nav a { color: white; text-decoration: none; font-weight: bold; margin: 0 15px; }
 
-        .container { max-width: 1100px; margin: 2rem auto; padding: 0 20px; }
+        .container { max-width: 95%; margin: 2rem auto; padding: 0 10px; }
         
         .header-card {
             background: white;
@@ -42,41 +41,63 @@
             background: white; 
             border-radius: 12px; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
-            overflow-x: auto; 
+            overflow-x: auto; /* Ensures all columns are accessible via scroll */
+            max-height: 70vh; /* Adds vertical scroll for long lists */
         }
 
-        table { width: 100%; border-collapse: collapse; }
-        th { background: #f8fafc; color: var(--primary-color); padding: 15px; text-align: left; border-bottom: 2px solid #eee; }
-        td { padding: 12px 15px; border-bottom: 1px solid #edf2f7; font-size: 0.95rem; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
         
-        .low-attendance {
+        /* Freeze first column (Names/Roll Nos) for better UX */
+        th { 
+            background: #f8fafc; 
+            color: var(--primary-color); 
+            padding: 12px 8px; 
+            text-align: center; 
+            border: 1px solid #e2e8f0;
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        td { 
+            padding: 10px 8px; 
+            border: 1px solid #edf2f7; 
+            text-align: center;
+            white-space: nowrap; 
+        }
+        
+        /* Highlight low attendance */
+        .low-att {
             background-color: #fff5f5 !important;
             color: #c53030 !important;
             font-weight: bold;
         }
 
-        #status-message { text-align: center; padding: 20px; font-weight: bold; color: var(--primary-color); }
+        .student-info { text-align: left; font-weight: bold; background: #fff; position: sticky; left: 0; z-index: 5; }
+
+        #status-message { text-align: center; padding: 40px; font-weight: bold; color: var(--primary-color); }
     </style>
 </head>
 <body>
 
     <nav>
         <a href="index.html">Main Portfolio</a>
-        <a href="attendance.html">Attendance View</a>
+        <a href="attendance.html">Full Attendance View</a>
     </nav>
 
     <div class="container">
         <div class="header-card">
-            <h1 style="margin:0; color: var(--primary-color);">Attendance Dashboard</h1>
-            <p>Real-time data from Google Sheets</p>
+            <h1 style="margin:0; color: var(--primary-color);">Comprehensive Attendance Dashboard</h1>
+            <p>Including Lecture & Lab Data (VLSI, EMMI, Fiber Optics, Mini Projects)</p>
         </div>
 
-        <input type="text" id="searchInput" class="search-box" placeholder="Search by name or roll number..." onkeyup="filterTable()">
+        <input type="text" id="searchInput" class="search-box" placeholder="Search by Student Name or Roll Number..." onkeyup="filterTable()">
 
-        <div id="status-message">Initializing Connection...</div>
+        <div id="status-message">Loading all columns...</div>
 
         <div class="table-wrapper">
-            <table id="attendanceTable" style="display:none;">
+            <table id="attendanceTable">
                 <thead id="tableHeader"></thead>
                 <tbody id="tableBody"></tbody>
             </table>
@@ -87,79 +108,48 @@
         const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTqAd3c4bG0GrAj6ypKV8elGH0OhNNvDuwkANnZD-WMC05bxddgN8bG16RxeN3ah5hgKERoM9qqwmSw/pub?gid=358740635&single=true&output=csv";
 
         async function init() {
-            const status = document.getElementById('status-message');
             try {
                 const response = await fetch(csvUrl);
-                if (!response.ok) throw new Error("Network response was not ok");
+                const text = await response.text();
+                const rows = text.split(/\r?\n/).map(row => row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/));
+
+                if (rows.length < 2) return;
+
+                // HANDLE DOUBLE HEADERS
+                const row1 = rows[0]; // Subject Names
+                const row2 = rows[1]; // Sub-headers (Lec Attd%)
                 
-                const data = await response.text();
-                // Regex to handle CSV lines properly including those with quotes/commas inside cells
-                const rows = data.split(/\r?\n/).map(row => {
-                    return row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                });
-
-                if (rows.length < 1) {
-                    status.innerText = "Sheet is empty.";
-                    return;
+                let combinedHeader = [];
+                for(let i=0; i < row2.length; i++) {
+                    let top = row1[i] ? row1[i].replace(/"/g, '').trim() : "";
+                    let bottom = row2[i] ? row2[i].replace(/"/g, '').trim() : "";
+                    // Combine them if they exist, otherwise just use one
+                    combinedHeader.push(top && bottom && top !== bottom ? `${top}<br><small>${bottom}</small>` : (top || bottom));
                 }
 
-                renderTable(rows);
-                status.style.display = 'none';
-                document.getElementById('attendanceTable').style.display = 'table';
-            } catch (error) {
-                console.error(error);
-                status.innerText = "Error: Data could not be loaded. Please ensure the sheet is published to web as CSV.";
-                status.style.color = "red";
+                renderTable(combinedHeader, rows.slice(2));
+                document.getElementById('status-message').style.display = 'none';
+            } catch (e) {
+                document.getElementById('status-message').innerHTML = "Error loading columns. Check Sheet visibility.";
             }
         }
 
-        function renderTable(rows) {
-            const header = rows[0];
-            const headerRow = document.getElementById('tableHeader');
-            const body = document.getElementById('tableBody');
-            
-            // Find Attendance Column (usually contains % or 'Att')
-            const attIndex = header.findIndex(h => h.toLowerCase().includes('attendance') || h.includes('%'));
+        function renderTable(headers, data) {
+            const headArea = document.getElementById('tableHeader');
+            const bodyArea = document.getElementById('tableBody');
 
-            // Build Header
-            let hHtml = '<tr>';
-            header.forEach(cell => {
-                hHtml += `<th>${cell.replace(/"/g, '').trim()}</th>`;
-            });
-            hHtml += '</tr>';
-            headerRow.innerHTML = hHtml;
+            headArea.innerHTML = `<tr>${headers.map((h, i) => `<th class="${i < 2 ? 'student-info' : ''}">${h}</th>`).join('')}</tr>`;
 
-            // Build Body
-            let bHtml = '';
-            for (let i = 1; i < rows.length; i++) {
-                if (rows[i].length < header.length) continue; // Skip empty rows
-
-                let rowClass = "";
-                if (attIndex !== -1) {
-                    const attValue = parseFloat(rows[i][attIndex].replace(/[^\d.-]/g, ''));
-                    if (!isNaN(attValue) && attValue < 75) {
-                        rowClass = 'class="low-attendance"';
-                    }
-                }
-
-                bHtml += `<tr ${rowClass}>`;
-                rows[i].forEach(cell => {
-                    bHtml += `<td>${cell.replace(/"/g, '').trim()}</td>`;
-                });
-                bHtml += '</tr>';
-            }
-            body.innerHTML = bHtml;
-        }
-
-        function filterTable() {
-            const input = document.getElementById("searchInput").value.toLowerCase();
-            const rows = document.getElementById("tableBody").getElementsByTagName("tr");
-            for (let row of rows) {
-                row.style.display = row.textContent.toLowerCase().includes(input) ? "" : "none";
-            }
-        }
-
-        window.onload = init;
-    </script>
-</body>
-</html>
+            let bodyHtml = '';
+            data.forEach(row => {
+                if (row.length < 2) return;
+                
+                bodyHtml += '<tr>';
+                row.forEach((cell, index) => {
+                    let cleanCell = cell.replace(/"/g, '').trim();
+                    let cssClass = index < 2 ? 'student-info' : '';
+                    
+                    // Logic to highlight ANY cell with attendance < 75%
+                    if (cleanCell.includes('%')) {
+                        let val = parseFloat(cleanCell);
+                        if (!isNaN(val) && val
