@@ -131,6 +131,7 @@
                 document.getElementById('status-message').style.display = 'none';
             } catch (e) {
                 document.getElementById('status-message').innerHTML = "Error loading columns. Check Sheet visibility.";
+                console.error("Fetch error: ", e);
             }
         }
 
@@ -152,4 +153,47 @@
                     // Logic to highlight ANY cell with attendance < 75%
                     if (cleanCell.includes('%')) {
                         let val = parseFloat(cleanCell);
-                        if (!isNaN(val) && val
+                        // If it's a valid number and less than 75, add the red highlighting class
+                        if (!isNaN(val) && val < 75) {
+                            cssClass += ' low-att';
+                        }
+                    }
+                    bodyHtml += `<td class="${cssClass}">${cleanCell}</td>`;
+                });
+                bodyHtml += '</tr>';
+            });
+            bodyArea.innerHTML = bodyHtml;
+        }
+
+        // Function to make the Search Bar work
+        function filterTable() {
+            let input = document.getElementById("searchInput");
+            let filter = input.value.toUpperCase();
+            let table = document.getElementById("attendanceTable");
+            let tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows (skipping the header)
+            for (let i = 1; i < tr.length; i++) {
+                // Assuming column 0 is Roll Number and column 1 is Name
+                let td1 = tr[i].getElementsByTagName("td")[0]; 
+                let td2 = tr[i].getElementsByTagName("td")[1]; 
+                
+                if (td1 || td2) {
+                    let txtValue1 = td1.textContent || td1.innerText;
+                    let txtValue2 = td2.textContent || td2.innerText;
+                    
+                    if (txtValue1.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        // THIS IS THE MISSING PIECE! Tell the browser to actually run the code.
+        init();
+        
+    </script>
+</body>
+</html>
