@@ -3,16 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gen AI Reflections</title>
+    <title>Gen AI Reflections | Dr. Ankush Kapoor</title>
+    <style>
+        :root {
+            /* Hyper-Vibrant Color Palette */
+            --primary-color: #1A2980; 
+            --secondary-color: #26D0CE; 
+            --accent-color: #FF416C; 
+            --bg-color: #f4f7f6;
+            --text-color: #2d3748;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            /* 4-Color Animated Gradient */
+            background: linear-gradient(-45deg, #1A2980, #26D0CE, #8E2DE2, #4A00E0);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite, fadeInDown 1s ease-out;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-color);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        header h1 { margin: 0; font-size: 2.8rem; letter-spacing: 1px; text-shadow: 2px 3px 6px rgba(0,0,0,0.4); }
+        header h2 { margin: 10px 0 0 0; font-weight: 300; font-size: 1.2rem; color: #e0f2fe; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
+        
+        .container { max-width: 1100px; margin: 2rem auto; padding: 0 20px; }
+        
+        .section-title { 
+            color: var(--primary-color); 
+            border-bottom: 3px solid var(--accent-color); 
+            padding-bottom: 10px; 
+            margin-bottom: 30px; 
+            font-size: 2rem;
+            text-align: center;
+            animation: fadeInDown 1.2s ease-out;
+        }
+
+        .intro-text {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* --- VIDEO GRID STYLES --- */
+        .video-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 30px; 
+            margin-bottom: 40px; 
+        }
+
+        .video-card { 
+            background: var(--card-bg); 
+            border-radius: 12px; 
+            overflow: hidden; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08); 
+            transition: transform 0.4s ease, box-shadow 0.4s ease; 
+            border-top: 5px solid var(--secondary-color); 
+            animation: fadeInUp 1s ease-out backwards;
+        }
+
+        .video-card:hover { 
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(38, 208, 206, 0.3); 
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .student-name {
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            background: linear-gradient(to right, #ffffff, #f0f9ff); 
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        footer { 
+            text-align: center; 
+            padding: 2rem; 
+            background: var(--primary-color); 
+            color: white; 
+            margin-top: 60px;
+            border-top: 5px solid var(--accent-color);
+        }
+
+        @media (max-width: 768px) { 
+            .video-grid { grid-template-columns: 1fr; } 
+            header h1 { font-size: 2.2rem; } 
+        }
+    </style>
 </head>
 <body>
-    <h1>Gen AI Reflections</h1>
-    <p>Student learning journey reflections from the mid-semester feedback.</p>
+
+<nav style="background: rgba(26, 41, 128, 0.9); padding: 15px; text-align: center; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px);">
+    <a href="index.html" style="color: white; text-decoration: none; margin: 0 20px; font-weight: bold; opacity: 0.8;">Home</a>
+    <a href="attendance.html" style="color: white; text-decoration: none; margin: 0 20px; font-weight: bold; opacity: 0.8;">Attendance Records</a>
+    <a href="gen-ai-reflections.html" style="color: white; text-decoration: none; margin: 0 20px; font-weight: bold; border-bottom: 2px solid var(--secondary-color);">Gen AI Reflections</a>
+</nav>
     
-    <ul>
-        <li><a href="https://drive.google.com/open?id=1I1ddKTjwlgG8aN6TMSWtlhoUSjgl1jJv" target="_blank">Student Reflection - Sania Pathania</a></li>
-        <li><a href="https://drive.google.com/open?id=15mtxsN0i-Pv5Gohu8Yptk3cmvjEeKFyY" target="_blank">Student Reflection - Angat Guleria</a></li>
-        <li><a href="https://drive.google.com/open?id=1GBp11EMB0Riugeh42y1kIvLFwq3XTVXX" target="_blank">Student Reflection - Jayant Singh</a></li>
-        </ul>
+    <header>
+        <h1>Gen AI Reflections</h1>
+        <h2>Student Learning Journeys & Mid-Semester Feedback</h2>
+    </header>
+
+    <div class="container">
+        
+        <p class="intro-text">Explore the 20-second video reflections from our students documenting their learning journey with Generative AI tools this semester.</p>
+
+        <div class="video-grid">
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1I1ddKTjwlgG8aN6TMSWtlhoUSjgl1jJv/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Sania Pathania </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/15mtxsN0i-Pv5Gohu8Yptk3cmvjEeKFyY/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Angat Guleria </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1scgHu8amS_4jtRgc9vnKQPcxSdWIzI7d/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Angat Guleria </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1GBp11EMB0Riugeh42y1kIvLFwq3XTVXX/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Jayant Singh</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/10_tzimz5dl9iVNtrCN0m0iCvl-k9sybL/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Adarsh </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1i8tHfZ3QOmB84UhL8UitzfCegCQCf1Hj/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Adarsh </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1GpQIqWBnsoRGLCq9DX62xn1pJU4MYgTO/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Jayant Singh</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1_aqv76jmufgt6H6lRaI9avwJSGDF-XAh/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Babita Rana </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1FHpIEohQ6IAXr0EaQTsNkiJV-8L0i7ae/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Sakshi</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1QytWVe59EmnBMM7h7YMRLJQOc-KKXUcX/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Anushka Chouhan </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1bKD16oVgvsh69ULfZKqZzmzPbk91oBcf/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Deepak Panwar </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1hiAXgJUC_m-oM5xJ527WO8ZlELkBim_q/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Babita Rana</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1pdgpWNeGC1NIi6j558szc7DPQrw1s9vL/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Sakshi</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1k_KOXPlHdjWKtoupJlR-iPLEjdCCX8_y/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Deepak Panwar </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1i6slQKi7rYzFFLjp11L0hbvzjSA-oWJ9/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Aastha Negi </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1TF7uLHWobRJcTVur4w0cwiOXxB_dAttu/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Aastha Negi </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1nJ5rmtTa5OLeF4EmaASThZk6vzRc_GSw/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Gaurav Gautam and </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1eiJIAB6VKXUnMTLPquFos1jiDTrygioS/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Prashant Kajla</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1KbCDyUZBWhvmtbAQXCpcElDEbERL4gY4/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Sahil Naryal </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1bQCb9eiUytaz8puM2ncd0MITERBYBp6Z/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Amrik Singh </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1h_9zo2HGFmef0JobXVIUMKDEe5Y0FVwx/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Aditya</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1HzNjuMqL2Co_VsPP7ik33h_2e384neeI/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Aditya patyal</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1s_ghCZIXxIiZn6vAKRlYfptT53iutRiT/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Anushka Chouhan </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/13DqrGCLJW3QdjSgT3WAzM0a6fDImFnL7/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Sakshi</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1Vk1CJSMRBOJuZm_FyffCQxbO5MAFnTFR/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Shalini Thakur </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/14fJQjWm_Cd1o4LXbklQKLZjoOENFomRG/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Sangharsh Patiyal</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1coSnzlCyjXDMWTaVzBRDdPApXoINqXIP/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Shalini Thakur </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/14q9z1kSuVpwdajwrtSykVvyG20gedlxM/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Sangharsh Patiyal</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1Oc850WkD_b5DHZu9gfMYzAEjUVSJLbtf/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Payal</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1dTMw3iUUwpDB8m8TGWctg_T-KS07qXNa/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Muskan </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/11hcYPdQ5_1T7et1OisWgmwfHFosUYg9h/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Pallavi Sharma </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1gdLQdz8YIM9h7xBSlDDwHGKRE0qg3nKz/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Shabnam kumari </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1b391u1JBGGp6NeQJpX3Fv5kqCAvuByLe/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Saneha thakur </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1G5MCzNtlg4NneOvEoeSim_oHQanVXg4M/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Priya Pathania</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1d48hpZmtYrWR-abBDVW6URoDx_54KLbn/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Saneha thakur</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1kf2ffnvj9Y1Dg2tOn_IJCVRemPPVRRLF/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Priya Pathania</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1xY9jRlq4_d7sBOfFwRS7B0yHD5hhczkW/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Akshita sharma </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1af9DcUnRashBMj4PGu8Zn6fUToEQy2TP/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Akshita sharma </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1O-NTK4n1WYRaYBiSFiK_WcEWiPY6V75H/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Jahanvi</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1o-UoQmpUgP0L_ZN6hNH4WhmJ4epBozSP/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Jahanvi</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1XRLNKSWYz037YIw7anrmcl2gk_kc7-Rr/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Muskan </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1XeVfa8XeJNWOTkmcCDq9mI4NDjhIXuBE/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - PRIYANSHU CHOUDHARY </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1_RMoKI3mu3reCHKrxY88mK--jhgTPuTV/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Ayush Dhiman</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1jhppnr0DZb6mE4eKNMNxbpw88bP4xey-/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Rishav bharotha </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1rPFgC2jk2OZLJ3Cvly74U9x7iyF378XG/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Ayush Dhiman</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1DDa4Fve7XygY7sWSWvMEk58oJVjA_CmO/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Ritika Sharma </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1__6aZnJ8v2k84Vdt_mNn7d_OWfj0Z2iw/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - sakshithakur5890@gmail.com</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1VFz8jOKz-TZ2xHQQzOWv5oIuFvq5bma5/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Saksham</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1g2hLxeQySrtpjw5Mv_FiaCtkYah72NBY/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Sakshi Thakur</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/12GD58wVCdamLAEVCO3u89-8zGsI7SjSy/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Rishav bharotha </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1ZmJTNCSxlXQa6TWobQLpGVGK6NsA_ZD4/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Sujal parmar</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1h94olmPNbMgvCruojUSBLjYmgE9ovqfQ/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Somya Kapoor</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1COuwbVEKUCL8F149s2GoWsXuTCqDQvLB/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Somya Kapoor</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1JMAVLhEVjghlIPvdwbm8n_GEbnEDcP2I/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Nishant rana </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1Vq1AxrXq1ZrgLLUwgaMEHCD4pjVDTLhT/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Thakur Sain </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1cG27O3sIavomKMrInLfGpkRSWnPKO7eu/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Arsh</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1qYhLi0zwdWTwupEoxENt9zKqVj_4k-u7/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Sahil</div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1_7sLYw45Rdi1xggmieL6UA5QKmJvOEfl/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Aryan thakur </div></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1zcuGm0ykuECD9zJu2IdDgRM1elU_gz0n/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Arsh</div></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Dr. Ankush Kapoor. All rights reserved.</p>
+        <p style="font-size: 0.9rem; color: #cbd5e1;">ABVGIET, Pragatinagar, Shimla (H.P.)</p>
+    </footer>
+
 </body>
 </html>
