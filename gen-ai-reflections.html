@@ -17,7 +17,6 @@
         
         .video-grid {
             display: grid;
-            /* Creates a responsive grid: boxes won't get smaller than 300px, but will fill the row */
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
             padding-bottom: 50px;
@@ -38,10 +37,9 @@
             box-shadow: 0 12px 25px rgba(38, 208, 206, 0.2);
         }
 
-        /* Forces Google Drive iframes to behave nicely */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%; 
             height: 0;
             overflow: hidden;
             background: #f1f5f9;
@@ -71,8 +69,10 @@
 
     <nav class="main-nav">
         <a href="index.html">Home</a>
-        <a href="attendance.html">Attendance Records</a>
-        <a href="gen-ai-reflections.html" class="active">Gen AI Reflections</a>
+        <a href="courses.html">Courses</a>
+        <a href="attendance.html">Attendance</a>
+        <a href="feedback.html">Feedback</a>
+        <a href="gen-ai-reflections.html" class="active">AI Reflections</a>
     </nav>
 
     <header style="padding: 3rem 2rem; border-bottom: 5px solid var(--accent-color);">
@@ -80,7 +80,9 @@
         <h2>Student Learning Journeys & Mid-Semester Feedback</h2>
     </header>
 
-    <div class="container" style="max-width: 1200px;"> <p class="intro-text">Explore the 20-second video reflections from our students documenting their learning journey with Generative AI tools this semester.</p>
+    <div class="container" style="max-width: 1200px;"> 
+        
+        <p class="intro-text">Explore the 20-second video reflections from our students documenting their learning journey with Generative AI tools this semester.</p>
 
         <div class="video-grid">
             <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1I1ddKTjwlgG8aN6TMSWtlhoUSjgl1jJv/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Sania Pathania </div></div>
