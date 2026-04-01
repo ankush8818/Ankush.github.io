@@ -50,7 +50,6 @@
         #attendanceTable tr:nth-child(even) { background-color: #f8fafc; }
         #attendanceTable tr:hover { background-color: #f1f5f9; transition: background 0.2s; }
         
-        /* Keeps Roll No and Name visible when scrolling right */
         .student-info {
             position: sticky;
             left: 0;
@@ -64,7 +63,6 @@
         }
         #attendanceTable tr:nth-child(even) td.student-info { background-color: #f8fafc; }
         
-        /* Auto-highlighting for low attendance */
         .low-att {
             background-color: #ffeef0 !important;
             color: #d8000c;
@@ -82,8 +80,10 @@
 
     <nav class="main-nav">
         <a href="index.html">Home</a>
-        <a href="attendance.html" class="active">Attendance Records</a>
-        <a href="gen-ai-reflections.html">Gen AI Reflections</a>
+        <a href="courses.html">Courses</a>
+        <a href="attendance.html" class="active">Attendance</a>
+        <a href="feedback.html">Feedback</a>
+        <a href="gen-ai-reflections.html">AI Reflections</a>
     </nav>
 
     <header style="padding: 3rem 2rem; border-bottom: 5px solid var(--accent-color);">
@@ -124,15 +124,13 @@
 
                 if (rows.length < 2) return;
 
-                // HANDLE DOUBLE HEADERS
-                const row1 = rows[0]; // Subject Names
-                const row2 = rows[1]; // Sub-headers (Lec Attd%)
+                const row1 = rows[0]; 
+                const row2 = rows[1]; 
                 
                 let combinedHeader = [];
                 for(let i=0; i < row2.length; i++) {
                     let top = row1[i] ? row1[i].replace(/"/g, '').trim() : "";
                     let bottom = row2[i] ? row2[i].replace(/"/g, '').trim() : "";
-                    // Combine them if they exist, otherwise just use one
                     combinedHeader.push(top && bottom && top !== bottom ? `${top}<br><small>${bottom}</small>` : (top || bottom));
                 }
 
@@ -159,52 +157,5 @@
                     let cleanCell = cell.replace(/"/g, '').trim();
                     let cssClass = index < 2 ? 'student-info' : '';
                     
-                    // Logic to highlight ANY cell with attendance < 75%
                     if (cleanCell.includes('%')) {
                         let val = parseFloat(cleanCell);
-                        // If it's a valid number and less than 75, add the red highlighting class
-                        if (!isNaN(val) && val < 75) {
-                            cssClass += ' low-att';
-                        }
-                    }
-                    bodyHtml += `<td class="${cssClass}">${cleanCell}</td>`;
-                });
-                bodyHtml += '</tr>';
-            });
-            bodyArea.innerHTML = bodyHtml;
-        }
-
-        // Function to make the Search Bar work
-        function filterTable() {
-            let input = document.getElementById("searchInput");
-            let filter = input.value.toUpperCase();
-            
-            // Target the table body directly to safely ignore headers
-            let tbody = document.getElementById("tableBody");
-            let tr = tbody.getElementsByTagName("tr");
-
-            // Loop through all data rows (starting at 0 since we are in tbody)
-            for (let i = 0; i < tr.length; i++) {
-                // Column 0 is Roll Number, Column 1 is Name
-                let td1 = tr[i].getElementsByTagName("td")[0]; 
-                let td2 = tr[i].getElementsByTagName("td")[1]; 
-
-                // Safely extract text ONLY if the cell actually exists
-                let txtValue1 = td1 ? (td1.textContent || td1.innerText) : "";
-                let txtValue2 = td2 ? (td2.textContent || td2.innerText) : "";
-                
-                // If either column matches the search query, show the row
-                if (txtValue1.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-
-        // Tell the browser to actually run the code.
-        init();
-        
-    </script>
-</body>
-</html>
