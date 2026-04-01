@@ -5,31 +5,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Attendance Dashboard | Dr. Ankush Kapoor</title>
     <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .search-box {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 10px 0 25px 0;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+        .search-box:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 8px rgba(38, 208, 206, 0.3);
+        }
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        #attendanceTable {
+            width: 100%;
+            border-collapse: collapse;
+            white-space: nowrap;
+        }
+        #attendanceTable th, #attendanceTable td {
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+            border-right: 1px solid #e2e8f0;
+            font-size: 0.95rem;
+        }
+        #attendanceTable th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+        #attendanceTable tr:nth-child(even) { background-color: #f8fafc; }
+        #attendanceTable tr:hover { background-color: #f1f5f9; transition: background 0.2s; }
+        
+        /* Keeps Roll No and Name visible when scrolling right */
+        .student-info {
+            position: sticky;
+            left: 0;
+            background-color: white;
+            z-index: 1;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+        }
+        #attendanceTable th.student-info {
+            background-color: var(--primary-color);
+            z-index: 2;
+        }
+        #attendanceTable tr:nth-child(even) td.student-info { background-color: #f8fafc; }
+        
+        /* Auto-highlighting for low attendance */
+        .low-att {
+            background-color: #ffeef0 !important;
+            color: #d8000c;
+            font-weight: bold;
+        }
+        #status-message {
+            text-align: center;
+            font-weight: bold;
+            color: var(--primary-color);
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
 
-    <nav>
-        <a href="index.html">Main Portfolio</a>
-        <a href="attendance.html">Full Attendance View</a>
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="attendance.html" class="active">Attendance Records</a>
+        <a href="gen-ai-reflections.html">Gen AI Reflections</a>
     </nav>
 
+    <header style="padding: 3rem 2rem; border-bottom: 5px solid var(--accent-color);">
+        <h1 style="font-size: 2.5rem;">Comprehensive Attendance Dashboard</h1>
+        <h2>Lecture & Lab Data (VLSI, EMMI, Fiber Optics, Mini Projects)</h2>
+    </header>
+
     <div class="container">
-        <div class="header-card">
-            <h1 style="margin:0; color: var(--primary-color);">Comprehensive Attendance Dashboard</h1>
-            <p>Including Lecture & Lab Data (VLSI, EMMI, Fiber Optics, Mini Projects)</p>
-        </div>
+        <div class="about-card">
+            
+            <input type="text" id="searchInput" class="search-box" placeholder="Search by Student Name or Roll Number..." onkeyup="filterTable()">
 
-        <input type="text" id="searchInput" class="search-box" placeholder="Search by Student Name or Roll Number..." onkeyup="filterTable()">
+            <div id="status-message">Loading all columns...</div>
 
-        <div id="status-message">Loading all columns...</div>
-
-        <div class="table-wrapper">
-            <table id="attendanceTable">
-                <thead id="tableHeader"></thead>
-                <tbody id="tableBody"></tbody>
-            </table>
+            <div class="table-wrapper">
+                <table id="attendanceTable">
+                    <thead id="tableHeader"></thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+            
         </div>
     </div>
+
+    <footer>
+        <p>&copy; 2026 Dr. Ankush Kapoor. All rights reserved.</p>
+        <p style="font-size: 0.9rem; color: #cbd5e1;">ABVGIET, Pragatinagar, Shimla (H.P.)</p>
+    </footer>
 
     <script>
         const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTqAd3c4bG0GrAj6ypKV8elGH0OhNNvDuwkANnZD-WMC05bxddgN8bG16RxeN3ah5hgKERoM9qqwmSw/pub?gid=358740635&single=true&output=csv";
@@ -120,7 +202,7 @@
             }
         }
 
-        // THIS IS THE MISSING PIECE! Tell the browser to actually run the code.
+        // Tell the browser to actually run the code.
         init();
         
     </script>
