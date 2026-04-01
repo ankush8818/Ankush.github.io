@@ -5,41 +5,136 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Feedback | Dr. Ankush Kapoor</title>
     <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* New Wrapper to put action button and illustration side-by-side */
+        .feedback-visualization-wrapper {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap; /* Allows stacking on mobile */
+        }
+
+        /* The block containing the button and text */
+        .feedback-action-block {
+            flex: 1;
+            min-width: 280px;
+            text-align: center;
+        }
+
+        /* The block containing the graphic illustration */
+        .feedback-illustration-container {
+            flex: 1;
+            min-width: 320px;
+            height: 250px; /* Fixed height for illustration */
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.02);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out backwards;
+            animation-delay: 0.2s;
+        }
+
+        /* Styles for the PLACEHOLDER graphic until you embed a real chart */
+        .illustration-placeholder {
+            text-align: center;
+            color: #64748b;
+        }
+        .illustration-placeholder svg {
+            filter: drop-shadow(0 4px 6px rgba(38, 208, 206, 0.3));
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* If you embed a real chart, it will use these styles */
+        .embedded-chart-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Small note style */
+        .small-note {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-top: -15px;
+            margin-bottom: 25px;
+        }
+
+        /* Mobile specific adjustments */
+        @media (max-width: 768px) {
+            .feedback-visualization-wrapper {
+                flex-direction: column-reverse; /* Illustration on top, button below on mobile */
+                gap: 20px;
+            }
+            .feedback-action-block { margin-top: 10px; }
+        }
+    </style>
 </head>
 <body>
 
-<nav class="main-nav">
-    <a href="index.html">Home</a>
-    <a href="courses.html">Courses</a>
-    <a href="attendance.html">Attendance</a>
-    <a href="feedback.html" class="active">Feedback</a>
-    <a href="gen-ai-reflections.html">AI Reflections</a>
-</nav>
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="attendance.html">Attendance</a>
+        <a href="feedback.html" class="active">Feedback</a>
+        <a href="gen-ai-reflections.html">AI Reflections</a>
+    </nav>
 
-<header style="padding: 3rem 2rem; border-bottom: 5px solid var(--accent-color);">
-    <h1 style="font-size: 2.5rem;">Student Feedback & Reflections</h1>
-    <h2>Continuous Improvement through Student Voices</h2>
-</header>
+    <header style="padding: 3rem 2rem; border-bottom: 5px solid var(--accent-color);">
+        <h1 style="font-size: 2.5rem;">Student Feedback & Reflections</h1>
+        <h2>Continuous Improvement through Student Voices</h2>
+    </header>
 
-<div class="container">
-    <div class="feedback-section" style="margin-top: 40px;">
-        <p style="font-size: 1.05rem; color: #4a5568; margin-bottom: 15px;">Your feedback is essential for continuous improvement. Please share your mid-semester reflections, thoughts on our gamified learning, and upload your journey video using the form below. Recent responses are dynamically updated in the sheet.</p>
-        
-        <a href="https://forms.gle/frmzQPRC2VSEYUvS8" target="_blank" class="btn form-btn">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" style="margin-right: 8px;"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-            Submit Your Feedback Form
-        </a>
+    <div class="container">
+        <div class="about-card" style="border-left: 5px solid var(--accent-color); margin-top: 40px; padding: 2rem;">
+            
+            <p style="font-size: 1.05rem; color: #4a5568; margin-bottom: 30px; text-align: center;">
+                Your feedback is essential for continuous improvement. Please share your mid-semester reflections using the form below. 
+                Recent responses and live analysis are dynamically updated in the dashboard.
+            </p>
+            
+            <div class="feedback-visualization-wrapper">
+                
+                <div class="feedback-action-block">
+                    <a href="https://forms.gle/frmzQPRC2VSEYUvS8" target="_blank" class="btn form-btn" style="width: 100%; box-sizing: border-box;">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" style="margin-right: 8px;"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                        Submit Your Feedback Form
+                    </a>
+                    <p class="small-note"><em>Form submissions are private. Summary data is analyzed publicly.</em></p>
+                </div>
 
-        <div class="sheet-container" style="height: 600px;">
-            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRCGKFRLKXF5qErQzFEiFftpZ1VApmVITQwI7TxRHPGiMbZkTIWYdaDBlO9Q0JdElFDmMBpr0hi8Q9k/pubhtml?widget=true&amp;headers=false"></iframe>
+                <div class="feedback-illustration-container">
+                    
+                    <div class="illustration-placeholder">
+                        <svg viewBox="0 0 24 24" width="60" height="60" fill="#26D0CE">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"></path>
+                        </svg>
+                        <p style="font-weight: 500; color: var(--primary-color); margin-top: 10px;">Live Sentiment Analysis</p>
+                        <p style="font-size: 0.8rem; margin: 0;"><em>A chart illustrating mid-semester trends will appear here as data is collected.</em></p>
+                    </div>
+
+                    </div>
+            </div>
+
+            <h3 style="color: var(--primary-color); border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; margin-top: 30px;">Raw Feedback Responses</h3>
+            
+            <div class="sheet-container" style="height: 450px; margin-top: 15px;">
+                <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRCGKFRLKXF5qErQzFEiFftpZ1VApmVITQwI7TxRHPGiMbZkTIWYdaDBlO9Q0JdElFDmMBpr0hi8Q9k/pubhtml?widget=true&amp;headers=false"></iframe>
+            </div>
         </div>
     </div>
-</div>
 
-<footer>
-    <p>&copy; 2026 Dr. Ankush Kapoor. All rights reserved.</p>
-    <p style="font-size: 0.9rem; color: #cbd5e1;">ABVGIET, Pragatinagar, Shimla (H.P.)</p>
-</footer>
+    <footer>
+        <p>&copy; 2026 Dr. Ankush Kapoor. All rights reserved.</p>
+        <p style="font-size: 0.9rem; color: #cbd5e1;">ABVGIET, Pragatinagar, Shimla (H.P.)</p>
+    </footer>
 
 </body>
 </html>
