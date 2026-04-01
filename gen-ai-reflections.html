@@ -5,23 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gen AI Reflections | Dr. Ankush Kapoor</title>
     <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .intro-text {
+            text-align: center;
+            font-size: 1.15rem;
+            color: #4a5568;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+        
+        .video-grid {
+            display: grid;
+            /* Creates a responsive grid: boxes won't get smaller than 300px, but will fill the row */
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding-bottom: 50px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            border-top: 5px solid var(--secondary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(38, 208, 206, 0.2);
+        }
+
+        /* Forces Google Drive iframes to behave nicely */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            background: #f1f5f9;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .student-name {
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--primary-color);
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            font-size: 0.95rem;
+        }
+    </style>
 </head>
 <body>
 
-<nav style="background: rgba(26, 41, 128, 0.9); padding: 15px; text-align: center; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px);">
-    <a href="index.html" style="color: white; text-decoration: none; margin: 0 20px; font-weight: bold; opacity: 0.8;">Home</a>
-    <a href="attendance.html" style="color: white; text-decoration: none; margin: 0 20px; font-weight: bold; opacity: 0.8;">Attendance Records</a>
-    <a href="gen-ai-reflections.html" style="color: white; text-decoration: none; margin: 0 20px; font-weight: bold; border-bottom: 2px solid var(--secondary-color);">Gen AI Reflections</a>
-</nav>
-    
-    <header>
-        <h1>Gen AI Reflections</h1>
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="attendance.html">Attendance Records</a>
+        <a href="gen-ai-reflections.html" class="active">Gen AI Reflections</a>
+    </nav>
+
+    <header style="padding: 3rem 2rem; border-bottom: 5px solid var(--accent-color);">
+        <h1 style="font-size: 2.5rem;">Gen AI Reflections</h1>
         <h2>Student Learning Journeys & Mid-Semester Feedback</h2>
     </header>
 
-    <div class="container">
-        
-        <p class="intro-text">Explore the 20-second video reflections from our students documenting their learning journey with Generative AI tools this semester.</p>
+    <div class="container" style="max-width: 1200px;"> <p class="intro-text">Explore the 20-second video reflections from our students documenting their learning journey with Generative AI tools this semester.</p>
 
         <div class="video-grid">
             <div class="video-card"><div class="video-container"><iframe src="https://drive.google.com/file/d/1I1ddKTjwlgG8aN6TMSWtlhoUSjgl1jJv/preview" allow="autoplay"></iframe></div><div class="student-name">Reflection - Sania Pathania </div></div>
